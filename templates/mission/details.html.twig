@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MissionController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+    <h1>Hello here ✅</h1>
+    <button><a href="{{ path('mission_list') }}"> Back to the list</a></button>
+
+    <h2>{{ mission.name }} :</h2>
+    <p>
+        Description : {{ mission.description }} <br>
+        Priority: {{ mission.priority }} <br>
+        {{ mission.date ? mission.date|date('Y-m-d H:i:s') : '' }}<br>
+        Status : {{ mission.statut}} <br>
+        Heroes : {% for heroe in mission.heroes %}
+            {{ heroe.name }} -
+        {% endfor %}
+        <button><a href="{{ path('delete_mission', {'id': mission.id}) }}">Delete mission</a></button>
+
+
+    </p>
+
+
+
+
+</div>
+{% endblock %}
