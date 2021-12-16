@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MissionController!{% endblock %}
+{% block title %}Hello heroController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,13 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    Mission list :
+    Heroes list :
     <ul>
-        {% for mission in missions %}
-            <li><a href="{{ path('mission_details', {'id': mission.id}) }}">{{ mission.name }}</a></li>
+        {% for user in users %}
+            <li><a href="{{ path('user_details', {'id': user.id}) }}">{{ user.name }}</a></li>
         {% endfor %}
     </ul>
-    <button><a href="{{ path('mission_create') }}">Add a mission</a></button>
+    <button><a href="{{ path('user_create') }}">Create a hero</a></button>
 </div>
 </div>
 {% endblock %}

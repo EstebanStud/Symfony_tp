@@ -90,4 +90,32 @@ class MissionController extends AbstractController
             'form' => $form
         ]);
     }
+    /**
+     * @Route("missions/{id}/update", name="update_mission")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function updateMission(int $id, Request $request): Response
+    {
+        $mission = $this->missionRepository->find($id);
+
+        if (null === $mission) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(MissionType::class, $mission);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mission = $form->getData();
+            $this->missionRepository->save($mission);
+
+            return $this->redirectToRoute('mission_list');
+        }
+
+        return $this->renderForm('mission/new.html.twig', [
+            'form' => $form
+        ]);
+    }
 }
